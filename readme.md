@@ -88,9 +88,10 @@ wiek,plec,cisnienie,objaw
 
 6. Wyniki są wyświetlane w oknie komunikatu.
 7. Tworzony jest plik `wyniki.csv` zawierający przefiltrowane dane.
-8. Generowane są dwa wykresy:
+8. Generowane są trzy wykresy:
    - histogram ciśnienia
    - wykres rozrzutu (wiek vs ciśnienie)
+   - średnia ciśnienia według płci
 
 ---
 
