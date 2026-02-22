@@ -51,7 +51,7 @@ def filtruj_dane():
     axs[1].grid(True, linestyle="--", alpha=0.5)
 
     ### wykres srednia wartosc cisnienia wzgledem plci
-    axs[2].bar(srednie_plec.index, srednie_plec.values, color=["#C44E52", "#8172B3"])
+    axs[2].bar(srednie_plec.index, srednie_plec.values, width="0.2", color=["#C44E52", "#8172B3"])
     axs[2].set_title("Średnie ciśnienie wg płci")
     axs[2].set_xlabel("Płeć")
     axs[2].set_ylabel("Średnie ciśnienie")
