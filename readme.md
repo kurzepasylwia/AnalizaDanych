@@ -28,7 +28,7 @@ Aplikacja została wykonana z wykorzystaniem biblioteki Tkinter (GUI), Pandas (a
 
 1. Sklonuj repozytorium:
 
-   git clone https://github.com/twojanazwa/AnalizaMedyczna.git
+   git clone https://github.com/kurzepasylwia/AnalizaDanych
 
 2. Przejdź do folderu projektu:
 
