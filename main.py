@@ -15,12 +15,13 @@ def wczytaj_plik():
     sciezka = filedialog.askopenfilename(filetypes=[("CSV files", "*.csv")])
     if sciezka:
         df = pd.read_csv(sciezka)
-        messagebox.showinfo("Sukces", "Plik wczytany poprawnie")
+        label_status.config(text="✅ Plik wczytany poprawnie", fg="green")
+
 
 def filtruj_dane():
     global df
     if df is None:
-        messagebox.showerror("Błąd", "Najpierw wczytaj plik")
+        label_status.config(text="❌ Najpierw wczytaj plik!", fg="red")
         return
     
     min_wiek = int(entry_wiek.get())
@@ -30,8 +31,9 @@ def filtruj_dane():
     mediana = przefiltrowane["cisnienie"].median()
     srednie_plec = przefiltrowane.groupby("plec")["cisnienie"].mean()
     
-    messagebox.showinfo("Statystyki", 
-                        f"Średnie ciśnienie: {srednia:.2f}\nMediana: {mediana:.2f}")
+    label_wyniki.config( 
+                    text=f"Średnie ciśnienie: {srednia:.2f}\nMediana: {mediana:.2f}",
+                    fg="blue")
     
     przefiltrowane.to_csv("wyniki.csv", index=False)
 
@@ -79,23 +81,30 @@ center_y}')
 # Konfiguracja siatki - przy zmianie rozmiaru obiekty centrowane
 root.columnconfigure(0, weight=1)
 root.columnconfigure(1, weight=1)
-root.rowconfigure(0, weight=1)
-root.rowconfigure(4, weight=1)
+####root.rowconfigure(0, weight=1)
+####root.rowconfigure(4, weight=1)
 
 # Przycisk wczytania pliku
-btn_wczytaj = tk.Button(root, text="Wczytaj CSV", command=wczytaj_plik)
+btn_wczytaj = tk.Button(root, text="Wczytaj plik CSV", command=wczytaj_plik)
 btn_wczytaj.grid(row=1, column=0, columnspan=2, pady=10)
+label_status = tk.Label(root, text="", font=("Arial", 10))
+label_status.grid(row=2, column=0, columnspan=2, pady=5)
+
 
 # Etykieta
 label = tk.Label(root, text="Minimalny wiek:")
-label.grid(row=2, column=0, columnspan=2, pady=10)
+label.grid(row=3, column=0, columnspan=2, pady=10)
 
 # Pole wpisywania
 entry_wiek = tk.Entry(root, justify="center")
-entry_wiek.grid(row=3, column=0, columnspan=2, pady=10)
+entry_wiek.grid(row=4, column=0, columnspan=2, pady=(0, 10))
 
 # Przycisk analizy
 btn_filtruj = tk.Button(root, text="Filtruj i analizuj", command=filtruj_dane)
-btn_filtruj.grid(row=4, column=0, columnspan=2, pady=10)
+btn_filtruj.grid(row=5, column=0, columnspan=2, pady=10)
+
+# Wyniki srednia i mediana na dole okna
+label_wyniki = tk.Label(root, text="", font=("Arial", 18))
+label_wyniki.grid(row=5, column=0, columnspan=2, pady=15)
 
 root.mainloop()

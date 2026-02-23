@@ -86,7 +86,7 @@ wiek,plec,cisnienie,objaw
    - średnia ciśnienia
    - mediana ciśnienia
 
-6. Wyniki są wyświetlane w oknie komunikatu.
+6. Wyniki są wyświetlane w oknie aplikacji, na dole.
 7. Tworzony jest plik `wyniki.csv` zawierający przefiltrowane dane.
 8. Generowane są trzy wykresy:
    - histogram ciśnienia
@@ -97,12 +97,12 @@ wiek,plec,cisnienie,objaw
 
 ## Wizualizacja
 
+- Wyniki średniej oraz mediany ciśnienia wyświetlane są w oknie pod przyciskiem analizy.
 - Histogram przedstawia rozkład wartości ciśnienia w badanej grupie.
 - Wykres rozrzutu pokazuje zależność między wiekiem a ciśnieniem pacjentów.
 - Wykres słupkowy średniego ciśnienia według płci
 
 Wykresy wyświetlane są w jednym panelu bez otwierania dodatkowych okien.
-Wykresy celowo wyświetlają się w nowym oknie, aby była mozliwość wprowadzenia nowych danych do analizy.
 
 ---
 
