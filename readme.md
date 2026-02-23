@@ -15,7 +15,7 @@ Program pozwala na:
 Aplikacja została wykonana z wykorzystaniem biblioteki Tkinter (GUI), Pandas (analiza danych) oraz Matplotlib (wizualizacja).
 
 ## Podgląd aplikacji
-![Podgląd aplikacji](assets/screenshot.png)
+![Podgląd aplikacji](assets/appscreenshot.png)
 
 ---
 
