@@ -173,6 +173,16 @@ header.pack(fill="x")
 frame_form = tk.Frame(root, bg="#ecf0f1")
 frame_form.pack(pady=20)
 
+# Etykieta nad polem wieku
+label_wiek = tk.Label(
+    frame_form,
+    text="Minimalny wiek:",
+    font=("Arial", 9),
+    bg="#ecf0f1",
+    fg="#333333"
+)
+label_wiek.grid(row=0, column=1, padx=10)
+
 btn_wczytaj = tk.Button(
     frame_form,
     text="Wczytaj plik CSV",
@@ -183,14 +193,14 @@ btn_wczytaj = tk.Button(
     padx=15,
     pady=8
 )
-btn_wczytaj.grid(row=0, column=0, padx=10)
+btn_wczytaj.grid(row=1, column=0, padx=10)
 
 entry_wiek = tk.Entry(
     frame_form,
     justify="center",
     width=10
 )
-entry_wiek.grid(row=0, column=1, padx=10)
+entry_wiek.grid(row=1, column=1, padx=10)
 
 btn_filtruj = tk.Button(
     frame_form,
@@ -202,7 +212,7 @@ btn_filtruj = tk.Button(
     padx=15,
     pady=8
 )
-btn_filtruj.grid(row=0, column=2, padx=10)
+btn_filtruj.grid(row=1, column=2, padx=10)
 
 label_status = tk.Label(root, text="", bg="#ecf0f1")
 label_status.pack()
