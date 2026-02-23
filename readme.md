@@ -33,7 +33,7 @@ Aplikacja została wykonana z wykorzystaniem biblioteki Tkinter (GUI), Pandas (a
 
 2. Przejdź do folderu projektu:
 
-   cd analiza_danych_med
+   cd AnalizaDanych-main
 
 3. (Opcjonalnie) Utwórz środowisko wirtualne:
 
