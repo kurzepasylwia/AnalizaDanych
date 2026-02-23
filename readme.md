@@ -7,8 +7,9 @@ Aplikacja desktopowa w języku Python umożliwiająca analizę danych medycznych
 Program pozwala na:
 - wczytanie danych z pliku CSV,
 - filtrowanie pacjentów według minimalnego wieku,
-- obliczanie podstawowych statystyk (średnia i mediana ciśnienia),
-- wizualizację danych (histogram oraz wykres rozrzutu),
+- obliczanie podstawowych statystyk (średnia i mediana ciśnienia, średnia ciśnienia wg płci),
+- interpretacja wyniku (norma/podwyzszone/wysokie)
+- wizualizację danych (histogram, wykres rozrzutu, średnia wg płci),
 - eksport przefiltrowanych danych do nowego pliku CSV.
 
 Aplikacja została wykonana z wykorzystaniem biblioteki Tkinter (GUI), Pandas (analiza danych) oraz Matplotlib (wizualizacja).
@@ -17,7 +18,7 @@ Aplikacja została wykonana z wykorzystaniem biblioteki Tkinter (GUI), Pandas (a
 
 ## Wymagania techniczne
 
-- Python 3.x
+- Python 3.10+
 - pandas
 - matplotlib
 - tkinter (wbudowany w Python)
@@ -52,7 +53,7 @@ Aplikacja została wykonana z wykorzystaniem biblioteki Tkinter (GUI), Pandas (a
 
 6. Uruchom aplikację:
 
-   python main.py
+   python newapp.py
 
 ---
 
@@ -86,7 +87,7 @@ wiek,plec,cisnienie,objaw
    - średnia ciśnienia
    - mediana ciśnienia
 
-6. Wyniki są wyświetlane w oknie aplikacji, na dole.
+6. Wyniki są wyświetlane w oknie aplikacji, w panelu statystyk.
 7. Tworzony jest plik `wyniki.csv` zawierający przefiltrowane dane.
 8. Generowane są trzy wykresy:
    - histogram ciśnienia
@@ -97,7 +98,7 @@ wiek,plec,cisnienie,objaw
 
 ## Wizualizacja
 
-- Wyniki średniej oraz mediany ciśnienia wyświetlane są w oknie pod przyciskiem analizy.
+- Wyniki średniej, mediany ciśnienia oraz interpretacja wyniku wyświetlane są w panelu statystyk.
 - Histogram przedstawia rozkład wartości ciśnienia w badanej grupie.
 - Wykres rozrzutu pokazuje zależność między wiekiem a ciśnieniem pacjentów.
 - Wykres słupkowy średniego ciśnienia według płci

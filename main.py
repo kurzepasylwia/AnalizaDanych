@@ -23,17 +23,25 @@ def filtruj_dane():
     if df is None:
         label_status.config(text="❌ Najpierw wczytaj plik!", fg="red")
         return
+    if entry_wiek.get() == "":
+        label_status.config(text="❌ Wpisz minimalny wiek!", fg="red")
+        return
     
     min_wiek = int(entry_wiek.get())
     przefiltrowane = df[df["wiek"] >= min_wiek]
 
+    if przefiltrowane.empty:
+        label_status.config(text="❌ Brak danych dla podanego wieku", fg="red")
+        return
+
+# Statystyki
     srednia = przefiltrowane["cisnienie"].mean()
     mediana = przefiltrowane["cisnienie"].median()
     srednie_plec = przefiltrowane.groupby("plec")["cisnienie"].mean()
     
     label_wyniki.config( 
                     text=f"Średnie ciśnienie: {srednia:.2f}\nMediana: {mediana:.2f}",
-                    fg="blue")
+                    fg="black")
     
     przefiltrowane.to_csv("wyniki.csv", index=False)
 
@@ -59,52 +67,72 @@ def filtruj_dane():
     axs[2].set_ylabel("Średnie ciśnienie")
     axs[2].grid(True, linestyle="--", alpha=0.5)
 
-    plt.tight_layout
     manager = plt.get_current_fig_manager()
     manager.window.wm_geometry("+300+200")
+    plt.tight_layout()
     plt.show()
 
 ### GUI
 root = tk.Tk()
 root.title("Analiza danych medycznych")
+default_bg = "#ecf0f1"
+root.configure(bg=default_bg)
+
+# Naglowek 
+header = tk.Label(root, text="System analizy danych medycznych",
+                  font=("Arial", 16, "bold"),
+                  bg="#2C3E50", fg="white",
+                  pady=10)
+header.grid(row=0, column=0, columnspan=2, sticky="ew")
 
 # Wyswietlanie okna aplikacji na srodku ekranu
-window_width = 400
-window_height = 300
+window_width = 500
+window_height = 500
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 center_x = int(screen_width/2 - window_width / 2)
 center_y = int(screen_height/2 - window_height / 2)
-root.geometry(f'{window_width}x{window_height}+{center_x}+{
-center_y}')
 
-# Konfiguracja siatki - przy zmianie rozmiaru obiekty centrowane
+root.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
+
+# Konfiguracja siatki 
 root.columnconfigure(0, weight=1)
 root.columnconfigure(1, weight=1)
 ####root.rowconfigure(0, weight=1)
 ####root.rowconfigure(4, weight=1)
 
 # Przycisk wczytania pliku
-btn_wczytaj = tk.Button(root, text="Wczytaj plik CSV", command=wczytaj_plik)
+btn_wczytaj = tk.Button(root, text="Wczytaj plik CSV", command=wczytaj_plik, bg=default_bg)
 btn_wczytaj.grid(row=1, column=0, columnspan=2, pady=10)
-label_status = tk.Label(root, text="", font=("Arial", 10))
+
+label_status = tk.Label(root, text="", font=("Arial", 10), bg="#ecf0f1")
 label_status.grid(row=2, column=0, columnspan=2, pady=5)
 
 
 # Etykieta
-label = tk.Label(root, text="Minimalny wiek:")
-label.grid(row=3, column=0, columnspan=2, pady=10)
+label = tk.Label(root, text="Minimalny wiek:", bg="#ecf0f1")
+label.grid(row=3, column=0, columnspan=2, pady=(20, 5))
 
-# Pole wpisywania
-entry_wiek = tk.Entry(root, justify="center")
+# Pole wpisywania #highlightthickness usuwa biala obwodke
+entry_wiek = tk.Entry(root, justify="center", bg="white",
+    highlightthickness=0,
+    bd=1, relief="solid")
 entry_wiek.grid(row=4, column=0, columnspan=2, pady=(0, 10))
 
 # Przycisk analizy
-btn_filtruj = tk.Button(root, text="Filtruj i analizuj", command=filtruj_dane)
+btn_filtruj = tk.Button(root, text="Filtruj i analizuj", command=filtruj_dane, bg=default_bg)
 btn_filtruj.grid(row=5, column=0, columnspan=2, pady=10)
 
-# Wyniki srednia i mediana na dole okna
-label_wyniki = tk.Label(root, text="", font=("Arial", 18))
-label_wyniki.grid(row=5, column=0, columnspan=2, pady=15)
+# Panel statystyk
+panel_statystyki = tk.Frame(root, bg="#f5f5f5", bd=2, relief="ridge")
+panel_statystyki.grid(row=6, column=0, columnspan=2, pady=15, padx=15, sticky="ew")
+
+label_tytul = tk.Label(panel_statystyki, text="Panel statystyk",
+                       font=("Arial", 15, "bold"), bg="#f5f5f5")
+label_tytul.pack(pady=5)
+
+label_wyniki = tk.Label(panel_statystyki, text="",
+                        font=("Arial", 14), bg="#f5f5f5")
+label_wyniki.pack(pady=5)
 
 root.mainloop()
