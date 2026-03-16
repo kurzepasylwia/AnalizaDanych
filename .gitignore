@@ -1,0 +1,7 @@
+echo ".venv/
+.DS_Store
+__pycache__/
+*.pyc
+raport*.csv
+raportpdf.pdf
+*_temp.png" > .gitignore
